@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// We could externalize data but keeping it in the page for simplicity now.
+const whatsappLink = "https://wa.me/56900000000"; // Replace with real WA
+const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
+---
+
+<Layout title="Mónica Alemán | Psicología Clínica Integrativa">
+	<!-- Navbar Minimalista -->
+	<header class="fixed w-full bg-[#faf9f6]/90 backdrop-blur-md z-50 border-b border-gray-100/50">
+		<div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
+			<a href="#" class="font-serif text-xl tracking-tight text-gray-900">Mónica Alemán</a>
+			<nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+				<a href="#enfoque" class="hover:text-rose-600 transition-colors">Mi Enfoque</a>
+				<a href="#especialidades" class="hover:text-rose-600 transition-colors">Especialidades</a>
+				<a href="#sobre-mi" class="hover:text-rose-600 transition-colors">Sobre mí</a>
+			</nav>
+			<a href={encuadradoLink} target="_blank" class="bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-rose-700 transition-all duration-300">
+				Agendar Hora
+			</a>
+		</div>
+	</header>
+
+	<!-- Hero Section -->
+	<section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+		<!-- Decoración sutil de fondo -->
+		<div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-rose-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+		
+		<div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+			<div class="flex-1 text-center md:text-left">
+				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 text-xs font-medium mb-6">
+					<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+					Atención Online y Presencial
+				</div>
+				<h1 class="text-5xl md:text-7xl font-serif text-gray-900 leading-[1.1] mb-6">
+					Un espacio seguro para <span class="text-rose-600 italic">tu bienestar</span>
+				</h1>
+				<p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
+					Psicóloga clínica de adolescentes y adultos. Te acompaño desde un modelo integrativo con escucha activa, calidez y sin juicios para lograr un empoderamiento y amor propio perdurable.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+					<a href={encuadradoLink} target="_blank" class="bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-rose-700 hover:shadow-lg hover:shadow-rose-700/20 transition-all duration-300 flex items-center justify-center gap-2">
+						Agendar sesión
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+					</a>
+					<a href="#especialidades" class="px-8 py-4 rounded-full text-base font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:bg-white transition-all duration-300 text-center">
+						Conoce cómo trabajo
+					</a>
+				</div>
+			</div>
+			
+			<div class="flex-1 w-full max-w-md">
+				<div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gray-100 shadow-2xl">
+					<img src="/monica-profile.jpg" alt="Mónica Alemán - Psicóloga Clínica" class="w-full h-full object-cover object-left-top" />
+					<div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Especialidades -->
+	<section id="especialidades" class="py-24 bg-white/50 border-y border-gray-100">
+		<div class="max-w-5xl mx-auto px-6">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-4">¿En qué puedo ayudarte?</h2>
+				<p class="text-gray-600 max-w-2xl mx-auto">Cada proceso es único. Trabajo desde la psicoterapia integrativa enfocándome en potenciar tus recursos personales.</p>
+			</div>
+
+			<div class="grid md:grid-cols-3 gap-8">
+				{[
+					{
+						title: "Autoestima y Crecimiento",
+						desc: "Desarrollo personal, empoderamiento y construcción de un amor propio inquebrantable.",
+						icon: "🌱"
+					},
+					{
+						title: "Comportamiento Alimentario",
+						desc: "Abordaje clínico en TCA y psiconutrición, mejorando tu relación con la comida y tu cuerpo.",
+						icon: "🍏"
+					},
+					{
+						title: "Emociones y Sentimientos",
+						desc: "Trastornos del ánimo, ansiedad, depresión, duelo y manejo del estrés o burnout.",
+						icon: "🤍"
+					}
+				].map(esp => (
+					<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+						<div class="text-4xl mb-6">{esp.icon}</div>
+						<h3 class="text-xl font-serif text-gray-900 mb-3">{esp.title}</h3>
+						<p class="text-gray-600 text-sm leading-relaxed">{esp.desc}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="mt-12 flex flex-wrap justify-center gap-3">
+				{["TDAH", "Psiconutrición", "Ansiedad", "Depresión", "Autoconocimiento", "Estrés", "Ideación suicida"].map(tag => (
+					<span class="px-4 py-2 bg-gray-50 text-gray-600 text-sm rounded-full border border-gray-100">{tag}</span>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Sobre Mí -->
+	<section id="sobre-mi" class="py-24">
+		<div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row-reverse gap-16 items-center">
+			<div class="flex-1">
+				<h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-6">Hola, soy Mónica</h2>
+				<div class="space-y-4 text-gray-600 leading-relaxed font-light">
+					<p>
+						Disfruto poder guiar a las personas sobre la vida y darle un sentido. En mis sesiones encontrarás un espacio seguro, acogedor y libre de prejuicios; un lugar de risas y llantos, de decisiones y descansos.
+					</p>
+					<p>
+						Mi trabajo es psicoeducar emocionalmente, orientarte y lograr que, al salir de sesión, te lleves nuevos recursos personales. Desempeño mi trabajo bajo la lógica de que cada persona tiene un sinfín de virtudes que se pueden multiplicar.
+					</p>
+				</div>
+				
+				<div class="mt-8 pt-8 border-t border-gray-100">
+					<h4 class="font-medium text-gray-900 mb-4">Formación Profesional</h4>
+					<ul class="space-y-3 text-sm text-gray-600">
+						<li class="flex items-start gap-2">
+							<span class="text-rose-500 mt-0.5">•</span>
+							<span>Licenciada en Psicología, Universidad Santo Tomás.</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="text-rose-500 mt-0.5">•</span>
+							<span>Diplomada en Bases de la Psiconutrición.</span>
+						</li>
+						<li class="flex items-start gap-2">
+							<span class="text-rose-500 mt-0.5">•</span>
+							<span>Especialización en Tratamiento TCA y Terapia Cognitivo Conductual.</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="flex-1 w-full">
+				<div class="bg-gray-100 rounded-3xl aspect-square max-w-sm mx-auto overflow-hidden">
+					<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop" alt="Consultorio" class="w-full h-full object-cover opacity-80 mix-blend-multiply" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Final -->
+	<section class="py-24 bg-gray-900 text-white text-center px-6">
+		<div class="max-w-3xl mx-auto">
+			<span class="text-rose-400 font-medium tracking-wide text-sm uppercase mb-4 block">Da el primer paso</span>
+			<h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">¿Lista/o para comenzar tu proceso terapéutico?</h2>
+			<div class="flex flex-col sm:flex-row justify-center gap-4">
+				<a href={encuadradoLink} target="_blank" class="bg-rose-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-rose-500 transition-colors">
+					Agendar en Encuadrado
+				</a>
+				<a href="https://wa.me/56900000000" target="_blank" class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
+					Hablar por WhatsApp
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-gray-950 py-12 text-center text-gray-500 text-sm">
+		<div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+			<div class="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
+				<p>© {new Date().getFullYear()} Mónica Alemán, Psicóloga. Todos los derechos reservados.</p>
+				<p class="text-xs text-gray-600 mt-1">Hecho con <span class="text-rose-500">❤️</span> por <a href="https://arubadigital.cl" target="_blank" class="hover:text-white transition-colors underline decoration-gray-700 hover:decoration-rose-500 underline-offset-2">AD</a></p>
+			</div>
+			<div class="flex gap-4">
+				<a href="https://www.instagram.com/psi.m.aleman/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+				<a href="https://www.linkedin.com/in/m%C3%B3nica-alem%C3%A1n-970bb3260/" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+			</div>
+		</div>
+	</footer>
+</Layout>
