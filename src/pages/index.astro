@@ -99,21 +99,30 @@ const vitrina = [
 <Layout title="Mónica Alemán | Psicología Clínica Integrativa">
 	<!-- Navbar Minimalista -->
 	<header class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100/50">
-		<div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-			<a href="#" class="font-serif text-xl tracking-tight text-gray-900">Psicóloga Mónica Alemán</a>
+		<div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
+			<a
+				href="#"
+				class="font-serif text-base sm:text-lg md:text-xl tracking-tight text-gray-900 leading-snug min-w-0"
+			>
+				Psicóloga Mónica Alemán
+			</a>
 			<nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
 				<a href="#enfoque" class="hover:text-primary transition-colors">Inicio</a>
 				<a href="#especialidades" class="hover:text-primary transition-colors">Servicios</a>
 				<a href="#sobre-mi" class="hover:text-primary transition-colors">Sobre mí</a>
 			</nav>
-			<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-dark transition-all duration-300">
+			<a
+				href={encuadradoLink}
+				target="_blank"
+				class="shrink-0 bg-primary text-white rounded-full text-xs sm:text-sm font-medium hover:bg-primary-dark transition-all duration-300 px-3.5 py-2 sm:px-5 sm:py-2.5"
+			>
 				Agendar Hora
 			</a>
 		</div>
 	</header>
 
 	<!-- Hero Section -->
-	<section id="enfoque" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+	<section id="enfoque" class="relative pt-28 pb-20 sm:pt-32 md:pt-48 md:pb-32 overflow-hidden">
 		<!-- Decoración sutil de fondo -->
 		<div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-primary/15 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
 		
@@ -123,18 +132,18 @@ const vitrina = [
 					<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
 					Atención Online y Presencial
 				</div>
-				<h1 class="text-5xl md:text-7xl font-serif text-gray-900 leading-[1.1] mb-6">
+				<h1 class="text-4xl sm:text-5xl md:text-7xl font-serif text-gray-900 leading-[1.1] mb-6">
 					Un espacio seguro para <span class="text-psicologia italic">tu bienestar</span>
 				</h1>
 				<p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
 					Psicóloga clínica de adolescentes y adultos. Te acompaño desde un modelo integrativo con escucha activa, calidez y sin juicios para lograr un empoderamiento y amor propio perdurable.
 				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-					<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-8 py-4 rounded-full text-base font-medium hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2">
+				<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+					<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2">
 						Agendar sesión
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+						<svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 					</a>
-					<a href="#especialidades" class="px-8 py-4 rounded-full text-base font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:bg-white transition-all duration-300 text-center">
+					<a href="#especialidades" class="px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:bg-white transition-all duration-300 text-center">
 						Conoce cómo trabajo
 					</a>
 				</div>
@@ -306,11 +315,11 @@ const vitrina = [
 		<div class="max-w-3xl mx-auto">
 			<span class="text-primary font-medium tracking-wide text-sm uppercase mb-4 block">Da el primer paso</span>
 			<h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">¿Lista/o para comenzar tu proceso terapéutico?</h2>
-			<div class="flex flex-col sm:flex-row justify-center gap-4">
-				<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-primary-dark transition-colors">
+			<div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+				<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-dark transition-colors">
 					Agendar en Encuadrado
 				</a>
-				<a href="https://wa.me/56933562296" target="_blank" class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
+				<a href="https://wa.me/56933562296" target="_blank" class="bg-white/10 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
 					Hablar por WhatsApp
 				</a>
 			</div>
