@@ -1,0 +1,32 @@
+---
+import type { IconoDetallePrecio } from "../data/productos";
+
+type Props = { tipo: IconoDetallePrecio };
+
+const { tipo } = Astro.props;
+const cls = "h-4 w-4 shrink-0 text-psicologia";
+---
+
+{tipo === "video" && (
+	<svg class={cls} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+		<path d="M4.5 4.5A2.25 2.25 0 0 0 2.25 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25h8.25a2.25 2.25 0 0 0 2.25-2.25v-2.25l3.576 2.682c.512.384 1.224.015 1.224-.63V6.198c0-.645-.712-1.014-1.224-.63L15.75 8.25V6a2.25 2.25 0 0 0-2.25-2.25H4.5Z" />
+	</svg>
+)}
+{tipo === "reloj" && (
+	<svg class={cls} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+		<path
+			fill-rule="evenodd"
+			d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.75 3.75a.75.75 0 0 0-1.5 0v6.75c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
+			clip-rule="evenodd"
+		/>
+	</svg>
+)}
+{tipo === "pin" && (
+	<svg class={cls} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+		<path
+			fill-rule="evenodd"
+			d="M11.54 22.351l.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+			clip-rule="evenodd"
+		/>
+	</svg>
+)}

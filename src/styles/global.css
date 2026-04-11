@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-	--color-primary: #73BAC0;
-	--color-primary: #73BAC0;
+	--color-primary: #73bac0;
 	--color-nutricion: #cba8ff;
 	--color-psicologia: #6bb5ff;
 	/* Hover / pressed: ligeramente más oscuros */

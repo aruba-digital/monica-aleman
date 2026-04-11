@@ -1,0 +1,335 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { productosEncuadrado, productosDocumentacion } from "../data/productos";
+
+const waDigits = "56933562296";
+const title = "Solicitar servicio | Mónica Alemán";
+const description =
+	"Datos para agendamiento: paciente y, si aplica, quien recibe la boleta. Envío por WhatsApp.";
+---
+
+<Layout {title} {description}>
+	<header class="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md">
+		<div class="mx-auto flex h-16 max-w-3xl items-center justify-between gap-3 px-4 sm:px-6">
+			<a href="/" class="font-serif text-base text-gray-900 hover:text-primary-dark sm:text-lg">
+				← Volver al inicio
+			</a>
+			<a
+				href={`https://wa.me/${waDigits}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="shrink-0 rounded-full bg-primary px-3 py-2 text-xs font-medium text-white hover:bg-primary-dark sm:text-sm sm:px-4"
+			>
+				WhatsApp
+			</a>
+		</div>
+	</header>
+
+	<main class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+		<h1 class="font-serif text-3xl text-gray-900 sm:text-4xl">Solicitar agendamiento</h1>
+		<p class="mt-3 text-sm leading-relaxed text-gray-600">
+			Mónica necesita estos datos para agendar. Si pagas tú y eres el/la paciente, elige «Es para mí». Si el
+			paciente es otra persona (por ejemplo un menor) y la boleta va a nombre de quien paga, elige «Es para
+			otra persona» y completa ambos bloques. También puedes pagar con tarjeta y elegir hora en{" "}
+			<a
+				href="https://encuadrado.com/p/monica-aleman"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-primary-dark underline underline-offset-2 hover:text-primary"
+			>
+				Encuadrado
+			</a>
+			.
+		</p>
+
+		<form id="contratar-form" class="mt-10 space-y-8">
+			<div>
+				<label for="servicio" class="mb-1.5 block text-sm font-medium text-gray-900">Servicio o producto</label>
+				<select
+					id="servicio"
+					name="servicio"
+					required
+					class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none ring-primary/30 focus:border-primary focus:ring-2"
+				>
+					<option value="" disabled selected>Selecciona una opción</option>
+					{
+						productosEncuadrado.map((p) => (
+							<option
+								value={p.id}
+								data-precio={p.precio}
+								data-nombre={p.nombre}
+								data-enc-id={p.encuadradoServiceId ?? ""}
+							>
+								{p.nombre} — {p.precio}
+							</option>
+						))
+					}
+					{
+						productosDocumentacion.map((p) => (
+							<option value={p.id} data-precio={p.precio} data-nombre={p.nombre} data-enc-id="">
+								{p.nombre} — {p.precio}
+							</option>
+						))
+					}
+				</select>
+			</div>
+
+			<fieldset class="space-y-3 rounded-xl border border-gray-200 bg-gray-50/80 p-4">
+				<legend class="px-1 text-sm font-medium text-gray-900">¿Para quién es la solicitud?</legend>
+				<label class="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 hover:bg-white has-[:checked]:border-primary/40 has-[:checked]:bg-white">
+					<input type="radio" name="tipo_solicitud" value="mismo" class="mt-1" checked id="tipo_mismo" />
+					<span class="text-sm text-gray-700">
+						<span class="font-medium text-gray-900">Es para mí</span> — soy el/la paciente y quien recibirá la
+						boleta / factura.
+					</span>
+				</label>
+				<label class="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 hover:bg-white has-[:checked]:border-primary/40 has-[:checked]:bg-white">
+					<input type="radio" name="tipo_solicitud" value="otro" class="mt-1" id="tipo_otro" />
+					<span class="text-sm text-gray-700">
+						<span class="font-medium text-gray-900">Es para otra persona</span> — el paciente es distinto de quien
+						paga o recibe la boleta.
+					</span>
+				</label>
+			</fieldset>
+
+			<!-- Un solo bloque: paciente = comprador -->
+			<div id="bloque-mismo" class="space-y-5">
+				<h2 class="border-b border-gray-200 pb-2 font-serif text-lg text-gray-900">Tus datos (paciente y boleta)</h2>
+				<div class="grid gap-4 sm:grid-cols-2">
+					<div class="sm:col-span-2">
+						<label for="m_nombre" class="mb-1 block text-sm font-medium text-gray-900">Nombre completo</label>
+						<input id="m_nombre" name="m_nombre" type="text" autocomplete="name" required class="field" placeholder="Según RUN" />
+					</div>
+					<div>
+						<label for="m_rut" class="mb-1 block text-sm font-medium text-gray-900">RUT</label>
+						<input id="m_rut" name="m_rut" type="text" required class="field" placeholder="12.345.678-9" />
+					</div>
+					<div>
+						<label for="m_fnac" class="mb-1 block text-sm font-medium text-gray-900">Fecha de nacimiento</label>
+						<input id="m_fnac" name="m_fnac" type="date" required class="field" />
+					</div>
+					<div class="sm:col-span-2">
+						<label for="m_correo" class="mb-1 block text-sm font-medium text-gray-900">Correo para recibir la boleta</label>
+						<input id="m_correo" name="m_correo" type="email" autocomplete="email" required class="field" placeholder="correo@ejemplo.cl" />
+					</div>
+					<div class="sm:col-span-2">
+						<label for="m_telefono" class="mb-1 block text-sm font-medium text-gray-900">Número de teléfono</label>
+						<input id="m_telefono" name="m_telefono" type="tel" autocomplete="tel" required class="field" placeholder="+56 9 1234 5678" />
+					</div>
+					<div class="sm:col-span-2">
+						<label for="m_direccion" class="mb-1 block text-sm font-medium text-gray-900">Dirección</label>
+						<input id="m_direccion" name="m_direccion" type="text" autocomplete="street-address" required class="field" placeholder="Calle, número, depto." />
+					</div>
+					<div class="sm:col-span-2">
+						<label for="m_comuna" class="mb-1 block text-sm font-medium text-gray-900">Comuna</label>
+						<input id="m_comuna" name="m_comuna" type="text" required class="field" placeholder="Ej. Providencia" />
+					</div>
+				</div>
+			</div>
+
+			<!-- Paciente y comprador separados -->
+			<div id="bloque-separado" class="hidden space-y-8">
+				<div class="space-y-5">
+					<h2 class="border-b border-gray-200 pb-2 font-serif text-lg text-gray-900">Datos del paciente</h2>
+					<div class="grid gap-4 sm:grid-cols-2">
+						<div class="sm:col-span-2">
+							<label for="p_nombre" class="mb-1 block text-sm font-medium text-gray-900">Nombre completo</label>
+							<input id="p_nombre" name="p_nombre" type="text" class="field" />
+						</div>
+						<div>
+							<label for="p_rut" class="mb-1 block text-sm font-medium text-gray-900">RUT</label>
+							<input id="p_rut" name="p_rut" type="text" class="field" />
+						</div>
+						<div>
+							<label for="p_fnac" class="mb-1 block text-sm font-medium text-gray-900">Fecha de nacimiento</label>
+							<input id="p_fnac" name="p_fnac" type="date" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="p_telefono" class="mb-1 block text-sm font-medium text-gray-900">Teléfono de contacto</label>
+							<input id="p_telefono" name="p_telefono" type="tel" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="p_direccion" class="mb-1 block text-sm font-medium text-gray-900">Dirección</label>
+							<input id="p_direccion" name="p_direccion" type="text" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="p_comuna" class="mb-1 block text-sm font-medium text-gray-900">Comuna</label>
+							<input id="p_comuna" name="p_comuna" type="text" class="field" />
+						</div>
+					</div>
+				</div>
+				<div class="space-y-5">
+					<h2 class="border-b border-gray-200 pb-2 font-serif text-lg text-gray-900">
+						Datos de quien paga / recibe la boleta
+					</h2>
+					<div class="grid gap-4 sm:grid-cols-2">
+						<div class="sm:col-span-2">
+							<label for="c_nombre" class="mb-1 block text-sm font-medium text-gray-900">Nombre completo</label>
+							<input id="c_nombre" name="c_nombre" type="text" class="field" />
+						</div>
+						<div>
+							<label for="c_rut" class="mb-1 block text-sm font-medium text-gray-900">RUT</label>
+							<input id="c_rut" name="c_rut" type="text" class="field" />
+						</div>
+						<div>
+							<label for="c_fnac" class="mb-1 block text-sm font-medium text-gray-900">Fecha de nacimiento</label>
+							<input id="c_fnac" name="c_fnac" type="date" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="c_correo" class="mb-1 block text-sm font-medium text-gray-900">Correo para recibir la boleta</label>
+							<input id="c_correo" name="c_correo" type="email" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="c_telefono" class="mb-1 block text-sm font-medium text-gray-900">Número de teléfono</label>
+							<input id="c_telefono" name="c_telefono" type="tel" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="c_direccion" class="mb-1 block text-sm font-medium text-gray-900">Dirección</label>
+							<input id="c_direccion" name="c_direccion" type="text" class="field" />
+						</div>
+						<div class="sm:col-span-2">
+							<label for="c_comuna" class="mb-1 block text-sm font-medium text-gray-900">Comuna</label>
+							<input id="c_comuna" name="c_comuna" type="text" class="field" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<label for="comentarios" class="mb-1.5 block text-sm font-medium text-gray-900">
+					Comentarios adicionales <span class="font-normal text-gray-500">(opcional)</span>
+				</label>
+				<textarea id="comentarios" name="comentarios" rows="3" class="field" placeholder="Horarios preferidos, urgencia, etc."></textarea>
+			</div>
+
+			<p class="text-xs text-gray-500">
+				Se abrirá WhatsApp con el mensaje armado; puedes revisarlo y editarlo antes de enviarlo.
+			</p>
+
+			<button
+				type="submit"
+				class="w-full rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#20bd5a] sm:text-base"
+			>
+				Abrir WhatsApp con mi solicitud
+			</button>
+		</form>
+	</main>
+
+	<style is:global>
+		#contratar-form .field {
+			width: 100%;
+			border-radius: 0.75rem;
+			border: 1px solid rgb(229 231 235);
+			padding: 0.75rem 1rem;
+			font-size: 0.875rem;
+			outline: none;
+		}
+		#contratar-form .field:focus {
+			border-color: var(--color-primary, #73bac0);
+			box-shadow: 0 0 0 2px rgb(115 186 192 / 0.25);
+		}
+	</style>
+
+	<script is:inline define:vars={{ waDigits }}>
+		(function () {
+			const form = document.getElementById("contratar-form");
+			const select = document.getElementById("servicio");
+			const bloqueMismo = document.getElementById("bloque-mismo");
+			const bloqueSep = document.getElementById("bloque-separado");
+			const tipoMismo = document.getElementById("tipo_mismo");
+			const tipoOtro = document.getElementById("tipo_otro");
+			if (!form || !select || !bloqueMismo || !bloqueSep) return;
+
+			const idsMismo = ["m_nombre", "m_rut", "m_fnac", "m_correo", "m_telefono", "m_direccion", "m_comuna"];
+			const idsPac = ["p_nombre", "p_rut", "p_fnac", "p_telefono", "p_direccion", "p_comuna"];
+			const idsComp = ["c_nombre", "c_rut", "c_fnac", "c_correo", "c_telefono", "c_direccion", "c_comuna"];
+
+			function setRequired(ids, on) {
+				ids.forEach((id) => {
+					const el = document.getElementById(id);
+					if (el) el.required = on;
+				});
+			}
+
+			function syncModo() {
+				const otro = tipoOtro && tipoOtro.checked;
+				bloqueMismo.classList.toggle("hidden", otro);
+				bloqueSep.classList.toggle("hidden", !otro);
+				setRequired(idsMismo, !otro);
+				setRequired(idsPac, otro);
+				setRequired(idsComp, otro);
+			}
+
+			tipoMismo && tipoMismo.addEventListener("change", syncModo);
+			tipoOtro && tipoOtro.addEventListener("change", syncModo);
+			syncModo();
+
+			const params = new URLSearchParams(window.location.search);
+			const pre = params.get("servicio");
+			if (pre && /^[a-z0-9-]+$/i.test(pre)) {
+				const opt = select.querySelector(`option[value="${pre}"]`);
+				if (opt) select.value = pre;
+			}
+
+			function val(id) {
+				return document.getElementById(id)?.value?.trim() || "";
+			}
+			function fmtFecha(s) {
+				if (!s) return "";
+				const d = s.split("-");
+				return d.length === 3 ? `${d[2]}/${d[1]}/${d[0]}` : s;
+			}
+
+			form.addEventListener("submit", function (e) {
+				e.preventDefault();
+				const opt = select.options[select.selectedIndex];
+				const nombreServicio = opt?.dataset?.nombre || "";
+				const precio = opt?.dataset?.precio || "";
+				const encId = (opt?.dataset?.encId || "").trim();
+				const comentarios = val("comentarios");
+				const otro = tipoOtro && tipoOtro.checked;
+
+				const lineas = [
+					"Hola Mónica, solicito agendamiento con los siguientes datos:",
+					"",
+					`*Servicio:* ${nombreServicio}`,
+					precio ? `*Precio referencia:* ${precio}` : "",
+					encId ? `*Ref. Encuadrado (ID):* ${encId}` : "",
+					""
+				];
+
+				if (!otro) {
+					lineas.push("*Datos (paciente = quien recibe la boleta)*", "");
+					lineas.push(`Nombre completo: ${val("m_nombre")}`);
+					lineas.push(`RUT: ${val("m_rut")}`);
+					lineas.push(`Fecha de nacimiento: ${fmtFecha(val("m_fnac"))}`);
+					lineas.push(`Correo (boleta): ${val("m_correo")}`);
+					lineas.push(`Teléfono: ${val("m_telefono")}`);
+					lineas.push(`Dirección: ${val("m_direccion")}`);
+					lineas.push(`Comuna: ${val("m_comuna")}`);
+				} else {
+					lineas.push("*Datos del paciente*", "");
+					lineas.push(`Nombre completo: ${val("p_nombre")}`);
+					lineas.push(`RUT: ${val("p_rut")}`);
+					lineas.push(`Fecha de nacimiento: ${fmtFecha(val("p_fnac"))}`);
+					lineas.push(`Teléfono: ${val("p_telefono")}`);
+					lineas.push(`Dirección: ${val("p_direccion")}`);
+					lineas.push(`Comuna: ${val("p_comuna")}`);
+					lineas.push("", "*Datos de quien paga / recibe la boleta*", "");
+					lineas.push(`Nombre completo: ${val("c_nombre")}`);
+					lineas.push(`RUT: ${val("c_rut")}`);
+					lineas.push(`Fecha de nacimiento: ${fmtFecha(val("c_fnac"))}`);
+					lineas.push(`Correo (boleta): ${val("c_correo")}`);
+					lineas.push(`Teléfono: ${val("c_telefono")}`);
+					lineas.push(`Dirección: ${val("c_direccion")}`);
+					lineas.push(`Comuna: ${val("c_comuna")}`);
+				}
+
+				if (comentarios) lineas.push("", "*Comentarios:*", comentarios);
+
+				const text = lineas.filter(Boolean).join("\n");
+				window.open(`https://wa.me/${waDigits}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+			});
+		})();
+	</script>
+</Layout>

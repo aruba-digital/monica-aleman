@@ -1,49 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IconoDetallePrecio from "../components/IconoDetallePrecio.astro";
+import { productosEncuadrado, productosDocumentacion } from "../data/productos";
+import boxFoto1 from "../assets/box-1.jpg";
+import boxFoto2 from "../assets/box-2.jpg";
 
 const whatsappLink = "https://wa.me/56933562296";
 const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
 
-const especialidades = [
-	{
-		title: "Autoestima y Crecimiento",
-		desc: "Desarrollo personal, empoderamiento y construcción de un amor propio inquebrantable.",
-		icon: "🌱",
-		sector: "psico" as const
-	},
-	{
-		title: "Comportamiento Alimentario",
-		desc: "Abordaje clínico en TCA y psiconutrición, mejorando tu relación con la comida y tu cuerpo.",
-		icon: "🍏",
-		sector: "nutri" as const
-	},
-	{
-		title: "Emociones y Sentimientos",
-		desc: "Trastornos del ánimo, ansiedad, depresión, duelo y manejo del estrés o burnout.",
-		icon: "🤍",
-		sector: "psico" as const
-	}
-];
-
 const tags = [
+	/* Mezcla visual: psicología (celeste), psiconutrición (lila), documentos/venta (primary) */
 	{ label: "Ansiedad", sector: "psico" as const },
+	{ label: "Psiconutrición", sector: "nutri" as const },
 	{ label: "Depresión", sector: "psico" as const },
-	{ label: "Autoconocimiento", sector: "psico" as const },
+	{ label: "Imagen corporal", sector: "nutri" as const },
+	{ label: "Ataques de pánico", sector: "psico" as const },
+	{ label: "Dismorfia corporal", sector: "nutri" as const },
+	{ label: "Trastornos del ánimo", sector: "psico" as const },
+	{ label: "Atracones", sector: "nutri" as const },
 	{ label: "Estrés", sector: "psico" as const },
-	{ label: "Ideación suicida", sector: "psico" as const },
-
+	{ label: "Terapia", sector: "psico" as const },
+	{ label: "Burnout", sector: "psico" as const },
+	{ label: "Anorexia", sector: "nutri" as const },
 	{ label: "Estrés postraumático", sector: "psico" as const },
+	{ label: "Ideación suicida", sector: "psico" as const },
+	{ label: "Comedores nocturnos", sector: "nutri" as const },
 	{ label: "Duelo", sector: "psico" as const },
+	{ label: "Dietantes crónicos", sector: "nutri" as const },
+	{ label: "Crisis emocional", sector: "psico" as const },
+	{ label: "Bulimia", sector: "nutri" as const },
+	{ label: "Autoconocimiento", sector: "psico" as const },
+	{ label: "Autoestima", sector: "psico" as const },
+	{ label: "Ortorexia", sector: "nutri" as const },
 	{ label: "Migración", sector: "psico" as const },
 	{ label: "Adaptación", sector: "psico" as const },
-
-	{ label: "Psiconutrición", sector: "nutri" as const },
 ];
 
 /** Variante de maquetación (comparación con cliente); la sección #especialidades no se modifica. */
 const serviciosEstructurados = [
 	{
-		icon: "🌱",
+		icon: "✨",
 		title: "Psicología clínica",
 		intro: "Psicoterapia integrativa para adolescentes y adultos, online y presencial.",
 		items: [
@@ -53,7 +49,7 @@ const serviciosEstructurados = [
 		accent: "psico" as const
 	},
 	{
-		icon: "🍏",
+		icon: "💜",
 		title: "Psiconutrición",
 		intro:
 			"Integra emociones, cuerpo y alimentación para fortalecer una relación más consciente y cuidada con la comida y contigo.",
@@ -71,29 +67,6 @@ const serviciosEstructurados = [
 		accent: "general" as const
 	}
 ];
-
-/** Productos digitales en Encuadrado; si existen URLs directas por servicio, reemplazar aquí. */
-const encuadradoProductoInforme = encuadradoLink;
-const encuadradoProductoCertificado = encuadradoLink;
-
-const vitrina = [
-	{
-		title: "Informe psicológico",
-		price: "$5.000 CLP",
-		href: encuadradoProductoInforme,
-		image:
-			"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=640&q=80&auto=format&fit=crop",
-		imageAlt: "Persona en un espacio de trabajo tranquilo con computador"
-	},
-	{
-		title: "Certificado de atención psicológica",
-		price: "$3.000 CLP",
-		href: encuadradoProductoCertificado,
-		image:
-			"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=640&q=80&auto=format&fit=crop",
-		imageAlt: "Manos cerca de un computador y una bebida en la mesa"
-	}
-];
 ---
 
 <Layout title="Mónica Alemán | Psicología Clínica Integrativa">
@@ -101,22 +74,24 @@ const vitrina = [
 	<header class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100/50">
 		<div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2">
 			<a
-				href="#"
+				href="/"
 				class="font-serif text-base sm:text-lg md:text-xl tracking-tight text-gray-900 leading-snug min-w-0"
 			>
 				Psicóloga Mónica Alemán
 			</a>
-			<nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-				<a href="#enfoque" class="hover:text-primary transition-colors">Inicio</a>
-				<a href="#especialidades" class="hover:text-primary transition-colors">Servicios</a>
-				<a href="#sobre-mi" class="hover:text-primary transition-colors">Sobre mí</a>
+			<nav class="hidden md:flex gap-6 text-sm font-medium text-gray-600 lg:gap-8">
+				<a href="/#enfoque" class="hover:text-primary transition-colors">Inicio</a>
+				<a href="/#servicios" class="hover:text-primary transition-colors">Servicios</a>
+				<a href="/#productos" class="hover:text-primary transition-colors">Productos</a>
+				<a href="/#documentacion" class="hover:text-primary transition-colors">Informes</a>
+				<a href="/#sobre-mi" class="hover:text-primary transition-colors">Sobre mí</a>
 			</nav>
 			<a
 				href={encuadradoLink}
 				target="_blank"
 				class="shrink-0 bg-primary text-white rounded-full text-xs sm:text-sm font-medium hover:bg-primary-dark transition-all duration-300 px-3.5 py-2 sm:px-5 sm:py-2.5"
 			>
-				Agendar Hora
+				Agendar sesión
 			</a>
 		</div>
 	</header>
@@ -125,7 +100,7 @@ const vitrina = [
 	<section id="enfoque" class="relative pt-28 pb-20 sm:pt-32 md:pt-48 md:pb-32 overflow-hidden">
 		<!-- Decoración sutil de fondo -->
 		<div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-primary/15 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
-		
+
 		<div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
 			<div class="flex-1 text-center md:text-left">
 				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary-dark text-xs font-medium mb-6">
@@ -143,12 +118,12 @@ const vitrina = [
 						Agendar sesión
 						<svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 					</a>
-					<a href="#especialidades" class="px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:bg-white transition-all duration-300 text-center">
+					<a href="#servicios" class="px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:bg-white transition-all duration-300 text-center">
 						Conoce cómo trabajo
 					</a>
 				</div>
 			</div>
-			
+
 			<div class="flex-1 w-full max-w-md">
 				<div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gray-100 shadow-2xl">
 					<img src="/monica-profile.jpg" alt="Mónica Alemán - Psicóloga Clínica" class="w-full h-full object-cover object-left-top" />
@@ -158,10 +133,10 @@ const vitrina = [
 		</div>
 	</section>
 
-	<!-- Especialidades -->
+	<!-- Servicios -->
 	 <!-- class="hidden md:block py-24 bg-white border-y border-gray-100" -->
 	<section
-		id="especialidades"
+		id="servicios"
 		class="py-24 bg-gray-50 border-y border-gray-100"
 	>
 		<div class="max-w-5xl mx-auto px-6">
@@ -239,34 +214,356 @@ const vitrina = [
 		</div>
 	</section>
 
-	<!-- Variante B: servicios + documentación (propuesta alternativa para el cliente) -->
-	<!-- <section
-		id="servicios-documentacion"
-		class="py-24 bg-gray-50 border-y border-gray-100"
-		aria-labelledby="servicios-documentacion-heading"
-	>
-		<div class="max-w-5xl mx-auto px-6">
-			<div class="text-center mb-14 max-w-2xl mx-auto">
-				<p class="text-xs font-medium uppercase tracking-wider text-primary-dark mb-2">Propuesta alternativa</p>
-				<h2 id="servicios-documentacion-heading" class="text-3xl md:text-4xl font-serif text-gray-900 mb-3">
-					Servicios y documentación profesional
+	<!-- Productos (catálogo manual; Encuadrado no expone API pública) -->
+	<section id="productos" class="border-t border-gray-100 bg-white py-20" aria-labelledby="productos-heading">
+		<div class="mx-auto max-w-5xl px-6">
+			<div class="mb-12 max-w-2xl">
+				<h2 id="productos-heading" class="font-serif text-3xl text-gray-900 md:text-4xl">
+					Productos y servicios
 				</h2>
-				<p class="text-gray-600 text-sm leading-relaxed">
-					Psicología, psiconutrición y documentación formal en un solo lugar. Así separamos la oferta clínica de los informes para trámites.
+				<p class="mt-3 text-sm leading-relaxed text-gray-600 md:text-base">
+					Tres opciones de psicología clínica con valores referenciales. Para elegir hora y pagar con tarjeta en
+					línea, usa «Agendar sesión» en la parte superior del sitio. Para coordinar por mensaje,
+					completa el formulario con «Solicitar por WhatsApp».
+				</p>
+				<p class="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">
+					También puedes pagar por <strong class="font-medium text-gray-800">transferencia bancaria</strong>; al
+					contactar por WhatsApp te enviamos los datos para transferir.
 				</p>
 			</div>
 
-			
+			<div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+				{
+					productosEncuadrado.map((p) => (
+						<article class="flex h-full flex-col rounded-3xl border-2 border-psicologia bg-white p-8 shadow-sm">
+							<h3 class="font-serif text-xl font-semibold leading-snug text-gray-900 sm:text-2xl">{p.nombre}</h3>
+							<p class="mt-3 font-serif text-3xl font-bold tracking-tight text-psicologia-dark sm:text-4xl">
+								{p.precio}
+							</p>
+							<p class="mt-2 flex flex-wrap items-center gap-x-1 text-sm leading-snug text-gray-600">
+								<span class="inline-flex items-center gap-1.5">
+									{p.detallesPrecio[0].icono && <IconoDetallePrecio tipo={p.detallesPrecio[0].icono} />}
+									<span>{p.detallesPrecio[0].texto}</span>
+								</span>
+								<span class="px-1 text-gray-400" aria-hidden="true">·</span>
+								<span class="inline-flex items-center gap-1.5">
+									{p.detallesPrecio[1].icono && <IconoDetallePrecio tipo={p.detallesPrecio[1].icono} />}
+									<span>{p.detallesPrecio[1].texto}</span>
+								</span>
+							</p>
+							<ul class="mt-6 flex flex-1 flex-col gap-3">
+								{p.caracteristicas.map((linea) => (
+									<li class="flex gap-2.5 text-sm leading-snug text-gray-700">
+										<svg
+											class="mt-0.5 h-4 w-4 shrink-0 text-psicologia"
+											viewBox="0 0 16 16"
+											fill="currentColor"
+											aria-hidden="true"
+										>
+											<path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 1 1 1.06-1.06L6 11.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
+										</svg>
+										<span>{linea}</span>
+									</li>
+								))}
+							</ul>
+							{p.galeriaBox && (
+								<p class="mt-5">
+									<button
+										type="button"
+										class="text-sm font-medium text-psicologia-dark underline decoration-psicologia/40 underline-offset-2 transition hover:text-psicologia hover:decoration-psicologia"
+										data-open-box-fotos
+									>
+										Ver fotos del box
+									</button>
+								</p>
+							)}
+							<div class="mt-8">
+								<a
+									href={`/contratar?servicio=${p.id}`}
+									class="inline-flex w-full items-center justify-center rounded-full bg-psicologia px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-psicologia-dark"
+								>
+									Solicitar por WhatsApp
+								</a>
+							</div>
+							<p class="mt-6 text-center text-xs leading-relaxed text-gray-500">{p.notaPie}</p>
+						</article>
+					))
+				}
+			</div>
 
-			<p class="text-center text-xs text-gray-500 mt-10 max-w-xl mx-auto">
-				Valores y tiempos de informes o certificados se coordinan según tipo de documento. Puedes agendar sesiones en Encuadrado o escribir al{" "}
-				<a href={whatsappLink} target="_blank" class="text-primary-dark underline underline-offset-2 hover:text-primary">
-					WhatsApp
-				</a>
-				.
-			</p>
+			<dialog
+				id="modal-box-fotos"
+				class="box-fotos-dialog w-[min(calc(100vw-2rem),40rem)] max-w-[calc(100vw-2rem)] rounded-2xl border-0 bg-white p-0 shadow-2xl ring-1 ring-black/5"
+				aria-labelledby="modal-box-titulo"
+			>
+				<div class="flex max-h-[min(90vh,880px)] flex-col">
+					<div class="flex shrink-0 items-center justify-between gap-3 border-b border-gray-100 px-4 py-3 sm:px-5">
+						<h2 id="modal-box-titulo" class="font-serif text-lg font-semibold text-gray-900">
+							Box en Providencia
+						</h2>
+						<form method="dialog">
+							<button
+								type="submit"
+								class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-800"
+								aria-label="Cerrar"
+							>
+								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" />
+								</svg>
+							</button>
+						</form>
+					</div>
+					<div class="relative p-4 sm:p-6">
+						<div id="box-carrusel-live" class="sr-only" aria-live="polite" />
+						<div class="relative overflow-hidden rounded-xl bg-gray-100">
+							<div
+								id="box-fotos-track"
+								class="flex transition-transform duration-300 ease-out motion-reduce:transition-none"
+								style="transform: translateX(0%)"
+							>
+								<div class="box-fotos-slide min-w-full shrink-0">
+									<img
+										src={boxFoto1.src}
+										width={boxFoto1.width}
+										height={boxFoto1.height}
+										alt="Vista del box presencial en Providencia"
+										class="mx-auto max-h-[min(60vh,520px)] w-full object-contain"
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
+								<div class="box-fotos-slide min-w-full shrink-0">
+									<img
+										src={boxFoto2.src}
+										width={boxFoto2.width}
+										height={boxFoto2.height}
+										alt="Otra vista del box presencial en Providencia"
+										class="mx-auto max-h-[min(60vh,520px)] w-full object-contain"
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
+							</div>
+							<button
+								type="button"
+								id="box-fotos-prev"
+								class="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-psicologia-dark shadow-md ring-1 ring-gray-200/80 transition hover:bg-white hover:ring-psicologia/30"
+								aria-label="Foto anterior"
+							>
+								<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</button>
+							<button
+								type="button"
+								id="box-fotos-next"
+								class="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-psicologia-dark shadow-md ring-1 ring-gray-200/80 transition hover:bg-white hover:ring-psicologia/30"
+								aria-label="Foto siguiente"
+							>
+								<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</button>
+						</div>
+						<div class="mt-4 flex justify-center gap-3" role="tablist" aria-label="Seleccionar foto">
+							<button
+								type="button"
+								class="box-fotos-dot"
+								data-box-fotos-index="0"
+								data-active="true"
+								role="tab"
+								aria-selected="true"
+								aria-label="Foto 1 de 2"
+							/>
+							<button
+								type="button"
+								class="box-fotos-dot"
+								data-box-fotos-index="1"
+								data-active="false"
+								role="tab"
+								aria-selected="false"
+								aria-label="Foto 2 de 2"
+							/>
+						</div>
+					</div>
+				</div>
+			</dialog>
 		</div>
-	</section> -->
+	</section>
+
+	<style is:global>
+		#modal-box-fotos::backdrop {
+			background-color: rgb(15 23 42 / 0.45);
+		}
+		.box-fotos-dialog {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin: 0;
+			transform: translate(-50%, -50%);
+			max-height: min(90vh, 880px);
+		}
+		.box-fotos-dialog:focus {
+			outline: none;
+		}
+		#modal-box-fotos .box-fotos-dot {
+			width: 0.625rem;
+			height: 0.625rem;
+			border-radius: 9999px;
+			border: none;
+			padding: 0;
+			cursor: pointer;
+			transition: background-color 0.2s ease, box-shadow 0.2s ease;
+		}
+		#modal-box-fotos .box-fotos-dot[data-active="true"] {
+			background-color: var(--color-psicologia, #6bb5ff);
+			box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--color-psicologia, #6bb5ff);
+		}
+		#modal-box-fotos .box-fotos-dot[data-active="false"] {
+			background-color: #d1d5db;
+		}
+		#modal-box-fotos .box-fotos-dot[data-active="false"]:hover {
+			background-color: #9ca3af;
+		}
+	</style>
+
+	<script is:inline>
+		(function () {
+			var dlg = document.getElementById("modal-box-fotos");
+			if (!dlg || !(dlg instanceof HTMLDialogElement)) return;
+
+			var track = document.getElementById("box-fotos-track");
+			var prevBtn = document.getElementById("box-fotos-prev");
+			var nextBtn = document.getElementById("box-fotos-next");
+			var live = document.getElementById("box-carrusel-live");
+			var dots = document.querySelectorAll(".box-fotos-dot");
+			var total = document.querySelectorAll(".box-fotos-slide").length;
+			if (!track || total < 1) return;
+
+			var index = 0;
+
+			function announce() {
+				if (!live) return;
+				live.textContent = "Foto " + (index + 1) + " de " + total;
+			}
+
+			function syncDots() {
+				dots.forEach(function (dot) {
+					var i = parseInt(dot.getAttribute("data-box-fotos-index") || "0", 10);
+					var on = i === index;
+					dot.setAttribute("aria-selected", on ? "true" : "false");
+					dot.setAttribute("data-active", on ? "true" : "false");
+				});
+			}
+
+			function go(i) {
+				index = ((i % total) + total) % total;
+				track.style.transform = "translateX(-" + index * 100 + "%)";
+				syncDots();
+				announce();
+			}
+
+			function resetCarrusel() {
+				go(0);
+			}
+
+			document.querySelectorAll("[data-open-box-fotos]").forEach(function (btn) {
+				btn.addEventListener("click", function () {
+					resetCarrusel();
+					dlg.showModal();
+				});
+			});
+
+			dlg.addEventListener("click", function (e) {
+				if (e.target === dlg) dlg.close();
+			});
+
+			prevBtn &&
+				prevBtn.addEventListener("click", function () {
+					go(index - 1);
+				});
+			nextBtn &&
+				nextBtn.addEventListener("click", function () {
+					go(index + 1);
+				});
+
+			dots.forEach(function (dot) {
+				dot.addEventListener("click", function () {
+					var i = parseInt(dot.getAttribute("data-box-fotos-index") || "0", 10);
+					if (!isNaN(i)) go(i);
+				});
+			});
+
+			document.addEventListener("keydown", function (e) {
+				if (!dlg.open) return;
+				if (e.key === "ArrowLeft") {
+					e.preventDefault();
+					go(index - 1);
+				} else if (e.key === "ArrowRight") {
+					e.preventDefault();
+					go(index + 1);
+				}
+			});
+		})();
+	</script>
+
+	<!-- Informes y certificados (solicitud interna; agendar sesión sigue en header/hero) -->
+	<section
+		id="documentacion"
+		class="border-t border-gray-200 bg-gray-50 py-16 md:py-20"
+		aria-labelledby="documentacion-heading"
+	>
+		<div class="mx-auto max-w-5xl px-6">
+			<div class="mb-10 max-w-2xl">
+				<h2 id="documentacion-heading" class="font-serif text-2xl text-gray-900 md:text-3xl">
+					Informes y certificados
+				</h2>
+				<p class="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">
+					Documentación profesional con valores indicados. Solicita el que necesites por WhatsApp; coordinamos plazos,
+					formato y pago (incluida transferencia) según tu caso.
+				</p>
+			</div>
+
+			<div
+				class="-mx-6 flex max-w-[100vw] gap-4 overflow-x-auto px-6 pb-1 [scrollbar-width:thin] md:mx-0 md:flex-col md:gap-6 md:overflow-visible md:px-0"
+				role="list"
+			>
+				{
+					productosDocumentacion.map((d) => (
+						<article
+							role="listitem"
+							class="flex w-[min(100%,calc(100vw-4.5rem))] max-w-md shrink-0 flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:max-w-none md:w-full md:max-w-none md:flex-row md:items-stretch md:justify-between md:gap-6 md:p-6"
+						>
+							<div class="flex min-w-0 flex-1 gap-4">
+								<img
+									src={d.imagen}
+									alt={d.imagenAlt}
+									width={112}
+									height={112}
+									class="h-24 w-24 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
+									loading="lazy"
+									decoding="async"
+								/>
+								<div class="flex min-w-0 flex-col justify-center gap-2">
+									<h3 class="font-serif text-lg font-semibold leading-snug text-gray-900">{d.nombre}</h3>
+									<p class="text-sm leading-relaxed text-gray-600">{d.resumen}</p>
+								</div>
+							</div>
+							<div class="flex shrink-0 flex-col justify-center gap-3 border-t border-gray-100 pt-4 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+								<p class="font-semibold text-gray-900 md:text-right">{d.precio}</p>
+								<a
+									href={`/contratar?servicio=${d.id}`}
+									class="inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-primary-dark"
+								>
+									Solicitar por WhatsApp
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
 
 	<!-- Sobre Mí -->
 	<section id="sobre-mi" class="py-24">
@@ -274,11 +571,12 @@ const vitrina = [
 			<div class="flex-1">
 				<h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-6">Hola, soy Mónica</h2>
 				<div class="space-y-4 text-gray-600 leading-relaxed font-light">
+					<p>Psicóloga clínica con experiencia en el acompañamiento emocional de adolescentes y adultos.</p>
 					<p>
-						Trabajo con modelo integrativo: cognitivo-conductual, humanista, sistémico, psicoanalítico y narrativo. Ofrezco espacio cercano para explorar emociones, fortalecer tu bienestar y avanzar en tu crecimiento.
+						Trabajo con el modelo integrativo, el cual integra diversas corrientes de la psicología de forma personalizada, tales como el modelo Cognitivo Conductual, Humanista, Sistémico, Psicoanalista y Narrativo. 
 					</p>
 					<p>
-						Acompaño a niños y adultos en consulta privada, fundación y colegios, con sesiones y talleres en salud mental. Abordo ansiedad, ánimo, vínculos, duelo y alimentación con mirada psiconutricional; estudio Nutrición y Dietética en curso.
+						Mi enfoque está centrado en ofrecer un espacio cálido, cómodo, cercano y efectivo, donde puedas explorar tus emociones, construir herramientas para tu bienestar y avanzar en tus proyectos y objetivos de crecimiento personal.
 					</p>
 				</div>
 
@@ -291,11 +589,11 @@ const vitrina = [
 						</li>
 						<li class="flex items-start gap-2">
 							<span class="text-nutricion mt-0.5">•</span>
-							<span>Diplomada en Bases de la Psiconutrición.</span>
+							<span>Diplomada en Bases de la Psiconutrición, Universidad Santo Tomás.</span>
 						</li>
 						<li class="flex items-start gap-2">
 							<span class="text-nutricion mt-0.5">•</span>
-							<span>Estudiante de Nutrición y Dietética, Universidad de Las Américas</span>
+							<span>Estudiante de Nutrición y Dietética, Universidad de Las Américas.</span>
 						</li>
 					</ul>
 				</div>
@@ -317,7 +615,7 @@ const vitrina = [
 			<h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">¿Lista/o para comenzar tu proceso terapéutico?</h2>
 			<div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
 				<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-dark transition-colors">
-					Agendar en Encuadrado
+					Agendar sesión
 				</a>
 				<a href="https://wa.me/56933562296" target="_blank" class="bg-white/10 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
 					Hablar por WhatsApp
