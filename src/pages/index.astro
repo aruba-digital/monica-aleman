@@ -56,10 +56,10 @@ const serviciosEstructurados = [
 		icon: "🍏",
 		title: "Psiconutrición",
 		intro:
-			"Integra mente y cuerpo, la conducta alimentaria y las emociones al comer.",
+			"Integra emociones, cuerpo y alimentación para fortalecer una relación más consciente y cuidada con la comida y contigo.",
 		items: [
 			"Hábitos y rutinas: conducta alimentaria cotidiana, organización y relación con la comida.",
-			"Abordaje clínico: trastornos de la conducta alimentaria (TCA) y dificultades relacionadas.",
+			"Abordaje clínico: trastornos de la conducta alimentaria (TCA) y dificultades asociadas.",
 		],
 		accent: "nutri" as const
 	},
@@ -161,20 +161,6 @@ const vitrina = [
 				<p class="text-gray-600 max-w-2xl mx-auto">Cada proceso es único. Trabajo desde la psicoterapia integrativa enfocándome en potenciar tus recursos personales.</p>
 			</div>
 
-			<div class=" md:grid md:grid-cols-3 gap-8">
-				{especialidades.map(esp => (
-					<div
-						class:list={[
-							"bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow border-t-4",
-							esp.sector === "nutri" ? "border-t-nutricion" : "border-t-psicologia"
-						]}
-					>
-						<div class="text-4xl mb-6">{esp.icon}</div>
-						<h3 class="text-xl font-serif text-gray-900 mb-3">{esp.title}</h3>
-						<p class="text-gray-600 text-sm leading-relaxed">{esp.desc}</p>
-					</div>
-				))}
-			</div>
 			<div class="pt-6 grid md:grid-cols-3 gap-6 md:gap-8">
 				{serviciosEstructurados.map((bloque) => (
 					<div
