@@ -1,46 +1,136 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// We could externalize data but keeping it in the page for simplicity now.
-const whatsappLink = "https://wa.me/56933562296"; // Replace with real WA
+const whatsappLink = "https://wa.me/56933562296";
 const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
+
+const especialidades = [
+	{
+		title: "Autoestima y Crecimiento",
+		desc: "Desarrollo personal, empoderamiento y construcción de un amor propio inquebrantable.",
+		icon: "🌱",
+		sector: "psico" as const
+	},
+	{
+		title: "Comportamiento Alimentario",
+		desc: "Abordaje clínico en TCA y psiconutrición, mejorando tu relación con la comida y tu cuerpo.",
+		icon: "🍏",
+		sector: "nutri" as const
+	},
+	{
+		title: "Emociones y Sentimientos",
+		desc: "Trastornos del ánimo, ansiedad, depresión, duelo y manejo del estrés o burnout.",
+		icon: "🤍",
+		sector: "psico" as const
+	}
+];
+
+const tags = [
+	{ label: "Ansiedad", sector: "psico" as const },
+	{ label: "Depresión", sector: "psico" as const },
+	{ label: "Autoconocimiento", sector: "psico" as const },
+	{ label: "Estrés", sector: "psico" as const },
+	{ label: "Ideación suicida", sector: "psico" as const },
+
+	{ label: "Estrés postraumático", sector: "psico" as const },
+	{ label: "Duelo", sector: "psico" as const },
+	{ label: "Migración", sector: "psico" as const },
+	{ label: "Adaptación", sector: "psico" as const },
+
+	{ label: "Psiconutrición", sector: "nutri" as const },
+];
+
+/** Variante de maquetación (comparación con cliente); la sección #especialidades no se modifica. */
+const serviciosEstructurados = [
+	{
+		icon: "🌱",
+		title: "Psicología clínica",
+		intro: "Psicoterapia integrativa para adolescentes y adultos, online y presencial.",
+		items: [
+			"Autoestima y Crecimiento: Trastornos del ánimo, ansiedad, depresión, duelo y manejo del estrés o burnout.",
+			"Emociones y Sentimientos: Desarrollo personal, empoderamiento y construcción de un amor propio inquebrantable.",
+		],
+		accent: "psico" as const
+	},
+	{
+		icon: "🍏",
+		title: "Psiconutrición",
+		intro:
+			"Integra mente y cuerpo, la conducta alimentaria y las emociones al comer.",
+		items: [
+			"Hábitos y rutinas: conducta alimentaria cotidiana, organización y relación con la comida.",
+			"Abordaje clínico: trastornos de la conducta alimentaria (TCA) y dificultades relacionadas.",
+		],
+		accent: "nutri" as const
+	},
+	{
+		icon: "📄",
+		title: "Informes y certificados",
+		intro: "Documentación profesional para trámites, instituciones o requerimientos formales.",
+		items: ["Informe psicológico", "Certificado de atención psicológica"],
+		accent: "general" as const
+	}
+];
+
+/** Productos digitales en Encuadrado; si existen URLs directas por servicio, reemplazar aquí. */
+const encuadradoProductoInforme = encuadradoLink;
+const encuadradoProductoCertificado = encuadradoLink;
+
+const vitrina = [
+	{
+		title: "Informe psicológico",
+		price: "$5.000 CLP",
+		href: encuadradoProductoInforme,
+		image:
+			"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=640&q=80&auto=format&fit=crop",
+		imageAlt: "Persona en un espacio de trabajo tranquilo con computador"
+	},
+	{
+		title: "Certificado de atención psicológica",
+		price: "$3.000 CLP",
+		href: encuadradoProductoCertificado,
+		image:
+			"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=640&q=80&auto=format&fit=crop",
+		imageAlt: "Manos cerca de un computador y una bebida en la mesa"
+	}
+];
 ---
 
 <Layout title="Mónica Alemán | Psicología Clínica Integrativa">
 	<!-- Navbar Minimalista -->
-	<header class="fixed w-full bg-[#faf9f6]/90 backdrop-blur-md z-50 border-b border-gray-100/50">
+	<header class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100/50">
 		<div class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-			<a href="#" class="font-serif text-xl tracking-tight text-gray-900">Mónica Alemán</a>
+			<a href="#" class="font-serif text-xl tracking-tight text-gray-900">Psicóloga Mónica Alemán</a>
 			<nav class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-				<a href="#enfoque" class="hover:text-rose-600 transition-colors">Mi Enfoque</a>
-				<a href="#especialidades" class="hover:text-rose-600 transition-colors">Especialidades</a>
-				<a href="#sobre-mi" class="hover:text-rose-600 transition-colors">Sobre mí</a>
+				<a href="#enfoque" class="hover:text-primary transition-colors">Inicio</a>
+				<a href="#especialidades" class="hover:text-primary transition-colors">Servicios</a>
+				<a href="#sobre-mi" class="hover:text-primary transition-colors">Sobre mí</a>
 			</nav>
-			<a href={encuadradoLink} target="_blank" class="bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-rose-700 transition-all duration-300">
+			<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary-dark transition-all duration-300">
 				Agendar Hora
 			</a>
 		</div>
 	</header>
 
 	<!-- Hero Section -->
-	<section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+	<section id="enfoque" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
 		<!-- Decoración sutil de fondo -->
-		<div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-rose-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+		<div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-primary/15 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
 		
 		<div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
 			<div class="flex-1 text-center md:text-left">
-				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50 text-rose-700 text-xs font-medium mb-6">
-					<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary-dark text-xs font-medium mb-6">
+					<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
 					Atención Online y Presencial
 				</div>
 				<h1 class="text-5xl md:text-7xl font-serif text-gray-900 leading-[1.1] mb-6">
-					Un espacio seguro para <span class="text-rose-600 italic">tu bienestar</span>
+					Un espacio seguro para <span class="text-psicologia italic">tu bienestar</span>
 				</h1>
 				<p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
 					Psicóloga clínica de adolescentes y adultos. Te acompaño desde un modelo integrativo con escucha activa, calidez y sin juicios para lograr un empoderamiento y amor propio perdurable.
 				</p>
 				<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-					<a href={encuadradoLink} target="_blank" class="bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-rose-700 hover:shadow-lg hover:shadow-rose-700/20 transition-all duration-300 flex items-center justify-center gap-2">
+					<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-8 py-4 rounded-full text-base font-medium hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2">
 						Agendar sesión
 						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 					</a>
@@ -60,46 +150,128 @@ const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
 	</section>
 
 	<!-- Especialidades -->
-	<section id="especialidades" class="py-24 bg-white/50 border-y border-gray-100">
+	 <!-- class="hidden md:block py-24 bg-white border-y border-gray-100" -->
+	<section
+		id="especialidades"
+		class="py-24 bg-gray-50 border-y border-gray-100"
+	>
 		<div class="max-w-5xl mx-auto px-6">
 			<div class="text-center mb-16">
 				<h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-4">¿En qué puedo ayudarte?</h2>
 				<p class="text-gray-600 max-w-2xl mx-auto">Cada proceso es único. Trabajo desde la psicoterapia integrativa enfocándome en potenciar tus recursos personales.</p>
 			</div>
 
-			<div class="grid md:grid-cols-3 gap-8">
-				{[
-					{
-						title: "Autoestima y Crecimiento",
-						desc: "Desarrollo personal, empoderamiento y construcción de un amor propio inquebrantable.",
-						icon: "🌱"
-					},
-					{
-						title: "Comportamiento Alimentario",
-						desc: "Abordaje clínico en TCA y psiconutrición, mejorando tu relación con la comida y tu cuerpo.",
-						icon: "🍏"
-					},
-					{
-						title: "Emociones y Sentimientos",
-						desc: "Trastornos del ánimo, ansiedad, depresión, duelo y manejo del estrés o burnout.",
-						icon: "🤍"
-					}
-				].map(esp => (
-					<div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+			<div class=" md:grid md:grid-cols-3 gap-8">
+				{especialidades.map(esp => (
+					<div
+						class:list={[
+							"bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow border-t-4",
+							esp.sector === "nutri" ? "border-t-nutricion" : "border-t-psicologia"
+						]}
+					>
 						<div class="text-4xl mb-6">{esp.icon}</div>
 						<h3 class="text-xl font-serif text-gray-900 mb-3">{esp.title}</h3>
 						<p class="text-gray-600 text-sm leading-relaxed">{esp.desc}</p>
 					</div>
 				))}
 			</div>
+			<div class="pt-6 grid md:grid-cols-3 gap-6 md:gap-8">
+				{serviciosEstructurados.map((bloque) => (
+					<div
+						class:list={[
+							"rounded-2xl border bg-white p-6 md:p-8 shadow-sm flex flex-col h-full",
+							bloque.accent === "nutri"
+								? "border-nutricion/30 border-l-4 border-l-nutricion"
+								: bloque.accent === "psico"
+									? "border-psicologia/30 border-l-4 border-l-psicologia"
+									: "border-primary/30 border-l-4 border-l-primary"
+						]}
+					>
+						<div class="text-4xl mb-6">{bloque.icon}</div>
+						<h3 class="text-lg font-serif text-gray-900 mb-2 font-bold">{bloque.title}</h3>
+						<p class="text-gray-600 text-sm leading-relaxed mb-5">{bloque.intro}</p>
+						<ul class="space-y-2.5 text-sm text-gray-600 flex-1">
+							{bloque.items.map((item) => {
+								const colon = item.indexOf(":");
+								const hasTitle =
+									colon !== -1 && colon < item.length - 1;
+								return (
+									<li class="flex gap-2">
+										<span
+											class:list={[
+												"mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full",
+												bloque.accent === "nutri"
+													? "bg-nutricion"
+													: bloque.accent === "psico"
+														? "bg-psicologia"
+														: "bg-primary"
+											]}
+										/>
+										<span>
+											{hasTitle ? (
+												<>
+													<strong class="font-semibold text-gray-900">
+														{item.slice(0, colon + 1)}
+													</strong>
+													{item.slice(colon + 1)}
+												</>
+											) : (
+												item
+											)}
+										</span>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				))}
+			</div>
 
 			<div class="mt-12 flex flex-wrap justify-center gap-3">
-				{["TDAH", "Psiconutrición", "Ansiedad", "Depresión", "Autoconocimiento", "Estrés", "Ideación suicida"].map(tag => (
-					<span class="px-4 py-2 bg-gray-50 text-gray-600 text-sm rounded-full border border-gray-100">{tag}</span>
+				{tags.map(({ label, sector }) => (
+					<span
+						class:list={[
+							"px-4 py-2 text-sm rounded-full border",
+							sector === "nutri"
+								? "bg-nutricion/10 text-nutricion-dark border-nutricion/25"
+								: "bg-psicologia/10 text-psicologia-dark border-psicologia/25"
+						]}
+					>
+						{label}
+					</span>
 				))}
 			</div>
 		</div>
 	</section>
+
+	<!-- Variante B: servicios + documentación (propuesta alternativa para el cliente) -->
+	<!-- <section
+		id="servicios-documentacion"
+		class="py-24 bg-gray-50 border-y border-gray-100"
+		aria-labelledby="servicios-documentacion-heading"
+	>
+		<div class="max-w-5xl mx-auto px-6">
+			<div class="text-center mb-14 max-w-2xl mx-auto">
+				<p class="text-xs font-medium uppercase tracking-wider text-primary-dark mb-2">Propuesta alternativa</p>
+				<h2 id="servicios-documentacion-heading" class="text-3xl md:text-4xl font-serif text-gray-900 mb-3">
+					Servicios y documentación profesional
+				</h2>
+				<p class="text-gray-600 text-sm leading-relaxed">
+					Psicología, psiconutrición y documentación formal en un solo lugar. Así separamos la oferta clínica de los informes para trámites.
+				</p>
+			</div>
+
+			
+
+			<p class="text-center text-xs text-gray-500 mt-10 max-w-xl mx-auto">
+				Valores y tiempos de informes o certificados se coordinan según tipo de documento. Puedes agendar sesiones en Encuadrado o escribir al{" "}
+				<a href={whatsappLink} target="_blank" class="text-primary-dark underline underline-offset-2 hover:text-primary">
+					WhatsApp
+				</a>
+				.
+			</p>
+		</div>
+	</section> -->
 
 	<!-- Sobre Mí -->
 	<section id="sobre-mi" class="py-24">
@@ -108,32 +280,31 @@ const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
 				<h2 class="text-3xl md:text-5xl font-serif text-gray-900 mb-6">Hola, soy Mónica</h2>
 				<div class="space-y-4 text-gray-600 leading-relaxed font-light">
 					<p>
-						Disfruto poder guiar a las personas sobre la vida y darle un sentido. En mis sesiones encontrarás un espacio seguro, acogedor y libre de prejuicios; un lugar de risas y llantos, de decisiones y descansos.
+						Trabajo con modelo integrativo: cognitivo-conductual, humanista, sistémico, psicoanalítico y narrativo. Ofrezco espacio cercano para explorar emociones, fortalecer tu bienestar y avanzar en tu crecimiento.
 					</p>
 					<p>
-						Mi trabajo es psicoeducar emocionalmente, orientarte y lograr que, al salir de sesión, te lleves nuevos recursos personales. Desempeño mi trabajo bajo la lógica de que cada persona tiene un sinfín de virtudes que se pueden multiplicar.
+						Acompaño a niños y adultos en consulta privada, fundación y colegios, con sesiones y talleres en salud mental. Abordo ansiedad, ánimo, vínculos, duelo y alimentación con mirada psiconutricional; estudio Nutrición y Dietética en curso.
 					</p>
 				</div>
-				
+
 				<div class="mt-8 pt-8 border-t border-gray-100">
 					<h4 class="font-medium text-gray-900 mb-4">Formación Profesional</h4>
 					<ul class="space-y-3 text-sm text-gray-600">
 						<li class="flex items-start gap-2">
-							<span class="text-rose-500 mt-0.5">•</span>
+							<span class="text-psicologia mt-0.5">•</span>
 							<span>Licenciada en Psicología, Universidad Santo Tomás.</span>
 						</li>
 						<li class="flex items-start gap-2">
-							<span class="text-rose-500 mt-0.5">•</span>
+							<span class="text-nutricion mt-0.5">•</span>
 							<span>Diplomada en Bases de la Psiconutrición.</span>
 						</li>
 						<li class="flex items-start gap-2">
-							<span class="text-rose-500 mt-0.5">•</span>
-							<span>Especialización en Tratamiento TCA y Terapia Cognitivo Conductual.</span>
+							<span class="text-nutricion mt-0.5">•</span>
+							<span>Estudiante de Nutrición y Dietética, Universidad de Las Américas</span>
 						</li>
 					</ul>
 				</div>
 			</div>
-			
 			<div class="flex-1 w-full">
 				<div class="bg-gray-100 rounded-3xl aspect-square max-w-sm mx-auto overflow-hidden">
 					<img src="/monica-profile.jpg" alt="Mónica Alemán en sesión" class="w-full h-full object-cover object-center" />
@@ -147,10 +318,10 @@ const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
 	<!-- CTA Final -->
 	<section class="py-24 bg-gray-900 text-white text-center px-6">
 		<div class="max-w-3xl mx-auto">
-			<span class="text-rose-400 font-medium tracking-wide text-sm uppercase mb-4 block">Da el primer paso</span>
+			<span class="text-primary font-medium tracking-wide text-sm uppercase mb-4 block">Da el primer paso</span>
 			<h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">¿Lista/o para comenzar tu proceso terapéutico?</h2>
 			<div class="flex flex-col sm:flex-row justify-center gap-4">
-				<a href={encuadradoLink} target="_blank" class="bg-rose-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-rose-500 transition-colors">
+				<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-primary-dark transition-colors">
 					Agendar en Encuadrado
 				</a>
 				<a href="https://wa.me/56933562296" target="_blank" class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
@@ -165,7 +336,7 @@ const encuadradoLink = "https://encuadrado.com/p/monica-aleman";
 		<div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
 			<div class="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
 				<p>© {new Date().getFullYear()} Mónica Alemán, Psicóloga. Todos los derechos reservados.</p>
-				<p class="text-xs text-gray-600 mt-1">Hecho con <span class="text-rose-500">❤️</span> por <a href="https://arubadigital.cl" target="_blank" class="hover:text-white transition-colors underline decoration-gray-700 hover:decoration-rose-500 underline-offset-2">AD</a></p>
+				<p class="text-xs text-gray-600 mt-1">Hecho con <span class="text-primary">❤️</span> por <a href="https://arubadigital.cl" target="_blank" class="hover:text-white transition-colors underline decoration-gray-700 hover:decoration-primary underline-offset-2">AD</a></p>
 			</div>
 			<div class="flex gap-4">
 				<a href="https://www.instagram.com/psi.m.aleman/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
