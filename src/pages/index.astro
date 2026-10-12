@@ -89,6 +89,7 @@ const serviciosEstructurados = [
 			<a
 				href={encuadradoLink}
 				target="_blank"
+				data-meta-event="Schedule"
 				class="shrink-0 bg-primary text-white rounded-full text-xs sm:text-sm font-medium hover:bg-primary-dark transition-all duration-300 px-3.5 py-2 sm:px-5 sm:py-2.5"
 			>
 				Agendar sesión
@@ -114,7 +115,7 @@ const serviciosEstructurados = [
 					Psicóloga clínica de adolescentes y adultos. Te acompaño desde un modelo integrativo con escucha activa, calidez y sin juicios para lograr un empoderamiento y amor propio perdurable.
 				</p>
 				<div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-					<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2">
+					<a href={encuadradoLink} target="_blank" data-meta-event="Schedule" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-medium hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center justify-center gap-2">
 						Agendar sesión
 						<svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 					</a>
@@ -280,6 +281,7 @@ const serviciosEstructurados = [
 							<div class="mt-8">
 								<a
 									href={`/contratar?servicio=${p.id}`}
+									data-meta-event="Contact"
 									class="inline-flex w-full items-center justify-center rounded-full bg-psicologia px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-psicologia-dark"
 								>
 									Solicitar por WhatsApp
@@ -553,6 +555,7 @@ const serviciosEstructurados = [
 								<p class="font-semibold text-gray-900 md:text-right">{d.precio}</p>
 								<a
 									href={`/contratar?servicio=${d.id}`}
+									data-meta-event="Contact"
 									class="inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-primary-dark"
 								>
 									Solicitar por WhatsApp
@@ -611,10 +614,10 @@ const serviciosEstructurados = [
 			<span class="text-primary font-medium tracking-wide text-sm uppercase mb-4 block">Da el primer paso</span>
 			<h2 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">¿Lista/o para comenzar tu proceso terapéutico?</h2>
 			<div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-				<a href={encuadradoLink} target="_blank" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-dark transition-colors">
+				<a href={encuadradoLink} target="_blank" data-meta-event="Schedule" class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-primary-dark transition-colors">
 					Agendar sesión
 				</a>
-				<a href="https://wa.me/56933562296" target="_blank" class="bg-white/10 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
+				<a href="https://wa.me/56933562296" target="_blank" data-meta-event="Contact" class="bg-white/10 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-lg font-medium hover:bg-white/20 transition-colors border border-white/20">
 					Hablar por WhatsApp
 				</a>
 			</div>
